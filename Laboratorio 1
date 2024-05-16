@@ -19,3 +19,4 @@ for elemento in mi_lista:
 # while i < len(mi_lista):
 #     print(mi_lista[i])
 #     i += 1
+# Funcionando
