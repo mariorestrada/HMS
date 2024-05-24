@@ -1,2 +1,32 @@
 print("Hello, World!")
+-------------------------
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+print("Módulos importados correctamente")
+-------------------------------------------------
+# Lista
+mi_lista = [1, 2, 3, 4, 5]
+print("Lista:", mi_lista)
 
+# Diccionario
+mi_diccionario = {'a': 1, 'b': 2, 'c': 3}
+print("Diccionario:", mi_diccionario)
+
+# Matriz (usando numpy)
+mi_matriz = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+print("Matriz:\n", mi_matriz)
+-------------------------------------------------------------
+# Usando for loop
+mi_lista = [1, 2, 3, 4, 5]
+print("Usando for loop:")
+for elemento in mi_lista:
+    print(elemento)
+
+# Usando while loop
+print("Usando while loop:")
+i = 0
+while i < len(mi_lista):
+    print(mi_lista[i])
+    i += 1
+---------------------------------------------------------------
