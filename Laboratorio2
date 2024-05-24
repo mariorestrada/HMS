@@ -1,0 +1,130 @@
+const int buttonPin = 2; // Pin al que está conectado el botón
+int buttonState = 0;     // Variable para almacenar el estado del botón
+
+void setup() {
+  // Inicializar el pin del botón como entrada
+  pinMode(buttonPin, INPUT);
+  // Inicializar la comunicación serial para imprimir el estado del botón
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Leer el estado del botón
+  buttonState = digitalRead(buttonPin);
+
+  // Imprimir el estado del botón en el monitor serial
+  if (buttonState == HIGH) {
+    Serial.println("Botón presionado");
+  } else {
+    Serial.println("Botón no presionado");
+  }
+
+  // Pequeño retraso para evitar lecturas inestables
+  delay(50);
+}
+---------------------------------------------------------------------------------------
+const int ledPin = 9; // Pin al que está conectado el LED
+
+void setup() {
+  // Inicializar el pin del LED como salida
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Encender el LED
+  digitalWrite(ledPin, HIGH);
+  delay(1000); // Mantener el LED encendido por 1 segundo
+
+  // Apagar el LED
+  digitalWrite(ledPin, LOW);
+  delay(1000); // Mantener el LED apagado por 1 segundo
+}
+---------------------------------------------------------------------------------------
+const int buttonPin = 2; // Pin al que está conectado el botón
+const int ledPin = 9;    // Pin al que está conectado el LED
+int buttonState = 0;     // Variable para almacenar el estado del botón
+
+void setup() {
+  // Inicializar el pin del botón como entrada
+  pinMode(buttonPin, INPUT);
+  // Inicializar el pin del LED como salida
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Leer el estado del botón
+  buttonState = digitalRead(buttonPin);
+
+  // Controlar el LED en función del estado del botón
+  if (buttonState == HIGH) {
+    // Si el botón está presionado, encender el LED
+    digitalWrite(ledPin, HIGH);
+  } else {
+    // Si el botón no está presionado, apagar el LED
+    digitalWrite(ledPin, LOW);
+  }
+}
+---------------------------------------------------------------------------------------------
+void setup() {
+  // Iniciar la comunicación serial a 9600 baudios
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Enviar un mensaje a la computadora cada segundo
+  Serial.println("Hola, mundo!");
+  delay(1000); // Esperar 1 segundo
+}
+---------------------------------------------------------------------------------------------
+const int ledPin = 9; // Pin al que está conectado el LED
+
+void setup() {
+  // Iniciar la comunicación serial a 9600 baudios
+  Serial.begin(9600);
+  // Inicializar el pin del LED como salida
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Verificar si hay datos disponibles en el puerto serial
+  if (Serial.available() > 0) {
+    // Leer el carácter ingresado
+    char command = Serial.read();
+    
+    // Controlar el LED en función del comando recibido
+    if (command == '1') {
+      digitalWrite(ledPin, HIGH); // Encender el LED
+      Serial.println("LED encendido");
+    } else if (command == '0') {
+      digitalWrite(ledPin, LOW); // Apagar el LED
+      Serial.println("LED apagado");
+    }
+  }
+}
+----------------------------------------------------------------------------------------------------
+const int buttonPin = 2; // Pin al que está conectado el botón
+int buttonState = 0;     // Variable para almacenar el estado del botón
+
+void setup() {
+  // Iniciar la comunicación serial a 9600 baudios
+  Serial.begin(9600);
+  // Inicializar el pin del botón como entrada
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  // Leer el estado del botón
+  buttonState = digitalRead(buttonPin);
+
+  // Enviar el estado del botón al monitor serial
+  if (buttonState == HIGH) {
+    Serial.println("Botón presionado");
+  } else {
+    Serial.println("Botón no presionado");
+  }
+
+  // Pequeño retraso para evitar lecturas inestables
+  delay(50);
+}
+
+----------------------------------------------------------------------------------------------------
