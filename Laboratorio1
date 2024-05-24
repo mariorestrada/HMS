@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define SIZE 1000
+
+void multiplyMatrices(int firstMatrix[SIZE][SIZE], int secondMatrix[SIZE][SIZE], int result[SIZE][SIZE]) {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            result[i][j] = 0;
+            for (int k = 0; k < SIZE; ++k) {
+                result[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
+            }
+        }
+    }
+}
+
+void fillMatrix(int matrix[SIZE][SIZE]) {
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            matrix[i][j] = rand() % 10;
+        }
+    }
+}
+
+int main() {
+    int firstMatrix[SIZE][SIZE];
+    int secondMatrix[SIZE][SIZE];
+    int result[SIZE][SIZE];
+    
+    srand(time(0));
+    
+    fillMatrix(firstMatrix);
+    fillMatrix(secondMatrix);
+    
+    multiplyMatrices(firstMatrix, secondMatrix, result);
+    
+    printf("Multiplication Completed.\n");
+    return 0;
+}
+------------------------------------------------------------------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    printf("Hola Mundo\n");
+
+    int a = 5;
+    int b = 3;
+    int sum = a + b;
+
+    printf("La suma de %d y %d es %d\n", a, b, sum);
+
+    return 0;
+}
+-----------------------------------------------------------------------------------------------------------------------------------
+import RPi.GPIO as GPIO
+import time
+
+# Configuración de los pines
+LED_PIN = 17
+BUTTON_PIN = 18
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+try:
+    while True:
+        button_state = GPIO.input(BUTTON_PIN)
+        if button_state == False:
+            GPIO.output(LED_PIN, True)
+            print("Botón presionado - LED encendido")
+        else:
+            GPIO.output(LED_PIN, False)
+        time.sleep(0.1)
+except KeyboardInterrupt:
+    GPIO.cleanup()
+-------------------------------------------------------------------------------------------------
+import RPi.GPIO as GPIO
+
+# Configuración de los pines
+LED_PIN = 17
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+
+try:
+    while True:
+        command = input("Escribe 'on' para encender el LED, 'off' para apagarlo y 'exit' para salir: ")
+        if command == 'on':
+            GPIO.output(LED_PIN, True)
+            print("LED encendido")
+        elif command == 'off':
+            GPIO.output(LED_PIN, False)
+            print("LED apagado")
+        elif command == 'exit':
+            break
+        else:
+            print("Comando no reconocido")
+except KeyboardInterrupt:
+    pass
+finally:
+    GPIO.cleanup()
+---------------------------------------------------------------------------------------------------
