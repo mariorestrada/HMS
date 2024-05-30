@@ -1,0 +1,113 @@
+void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}
+
+--------------------------------------
+
+#include <Scheduler.h>
+
+void setup() {
+  Serial.begin(9600);
+  Scheduler.startLoop(loop2);
+}
+
+void loop() {
+  Serial.println("This is the main loop.");
+  delay(1000);
+}
+
+void loop2() {
+  while (true) {
+    Serial.println("This is the second loop.");
+    delay(500);
+  }
+}
+---------------------------------------------------------------
+
+import RPi.GPIO as GPIO
+
+# Configurar el modo de pines GPIO
+GPIO.setmode(GPIO.BOARD)
+
+# Definir el pin de entrada
+pin_entrada = 11
+
+# Configurar el pin de entrada como entrada
+GPIO.setup(pin_entrada, GPIO.IN)
+
+try:
+    while True:
+        # Leer el estado del pin de entrada
+        estado = GPIO.input(pin_entrada)
+        print("Estado del pin de entrada:", estado)
+except KeyboardInterrupt:
+    # Limpiar los pines GPIO
+    GPIO.cleanup()
+-----------------------------------------------------------------------------
+import RPi.GPIO as GPIO
+import time
+
+# Configurar el modo de pines GPIO
+GPIO.setmode(GPIO.BOARD)
+
+# Definir el pin de salida
+pin_salida = 12
+
+# Configurar el pin de salida como salida
+GPIO.setup(pin_salida, GPIO.OUT)
+
+try:
+    while True:
+        # Encender el LED
+        GPIO.output(pin_salida, GPIO.HIGH)
+        print("LED encendido")
+        time.sleep(1)
+
+        # Apagar el LED
+        GPIO.output(pin_salida, GPIO.LOW)
+        print("LED apagado")
+        time.sleep(1)
+except KeyboardInterrupt:
+    # Limpiar los pines GPIO
+    GPIO.cleanup()
+-----------------------------------------------------------------------------------
+import RPi.GPIO as GPIO
+import time
+
+# Configurar el modo de pines GPIO
+GPIO.setmode(GPIO.BOARD)
+
+# Definir los pines de entrada y salida
+pin_entrada = 11
+pin_salida = 12
+
+# Configurar el pin de entrada como entrada y el pin de salida como salida
+GPIO.setup(pin_entrada, GPIO.IN)
+GPIO.setup(pin_salida, GPIO.OUT)
+
+try:
+    while True:
+        # Leer el estado del pin de entrada
+        estado = GPIO.input(pin_entrada)
+
+        # Encender o apagar el LED según el estado del pin de entrada
+        if estado == GPIO.HIGH:
+            GPIO.output(pin_salida, GPIO.HIGH)
+            print("LED encendido")
+        else:
+            GPIO.output(pin_salida, GPIO.LOW)
+            print("LED apagado")
+
+        # Pequeña pausa para evitar rebotes en el botón
+        time.sleep(0.1)
+except KeyboardInterrupt:
+    # Limpiar los pines GPIO
+    GPIO.cleanup()
+------------------------------------------------------------------------------------------
